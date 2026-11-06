@@ -1,0 +1,60 @@
+{% extends 'base.html' %}
+{% block title %}Dashboard - Calorie Counter{% endblock %}
+{% block content %}
+<div class="row">
+    <div class="col-12">
+        <div class="card shadow-sm p-4 mb-4 bg-white">
+            <h2>Hello, {{ profile.name }}!</h2>
+            <p class="text-muted mb-0">Age: {{ profile.age }} | Gender: {{ profile.gender }} | Height: {{ profile.height }} cm | Weight: {{ profile.weight }} kg</p>
+        </div>
+
+        <!-- BMR & Target Guidelines Cards -->
+        <div class="row text-center mb-4">
+            <div class="col-md-4 mb-3">
+                <div class="card shadow-sm p-3 bg-primary text-white">
+                    <h5>Daily BMR (Maintenance)</h5>
+                    <h3>{{ bmr }} kcal</h3>
+                </div>
+            </div>
+            <div class="col-md-4 mb-3">
+                <div class="card shadow-sm p-3 bg-warning text-dark">
+                    <h5>Weight Loss Target</h5>
+                    <h3>{{ weight_loss_target }} kcal</h3>
+                    <small>BMR - 500 kcal</small>
+                </div>
+            </div>
+            <div class="col-md-4 mb-3">
+                <div class="card shadow-sm p-3 bg-success text-white">
+                    <h5>Weight Gain Target</h5>
+                    <h3>{{ weight_gain_target }} kcal</h3>
+                    <small>BMR + 500 kcal</small>
+                </div>
+            </div>
+        </div>
+
+        <!-- Calorie Consumption Section -->
+        <div class="d-flex justify-content-between align-items-center mb-3">
+            <h3>Today's Consumed Calories: <span class="text-danger">{{ total_consumed }} kcal</span></h3>
+            <a href="{% url 'add_food' %}" class="btn btn-primary fw-bold">+ Add Food Item</a>
+        </div>
+
+        {% if food_logs %}
+            <div class="card shadow-sm">
+                <ul class="list-group list-group-flush">
+                    {% for log in food_logs %}
+                        <li class="list-group-item d-flex justify-content-between align-items-center p-3">
+                            <div>
+                                <h5 class="mb-1">{{ log.item_name }}</h5>
+                                <small class="text-muted">Logged on: {{ log.date_logged }}</small>
+                            </div>
+                            <span class="badge bg-danger rounded-pill fs-6">{{ log.calories }} kcal</span>
+                        </li>
+                    {% endfor %}
+                </ul>
+            </div>
+        {% else %}
+            <div class="alert alert-info">No food items logged for today yet. Click "+ Add Food Item" to start tracking!</div>
+        {% endif %}
+    </div>
+</div>
+{% endblock %}
