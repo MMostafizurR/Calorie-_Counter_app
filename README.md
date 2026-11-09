@@ -27,6 +27,9 @@ A full-stack web application designed to help users track their daily food intak
 Follow these steps to set up and run the Calorie Counter app locally on your machine.
 
 ### 1. Clone the Repository
+##🎯 Purpose of the Project
+
+This project was built as part of a continuous learning journey to strengthen backend development skills, practice Django models, handle form submissions, and manage user-specific data relationships efficiently.
 ```bash
 git clone [https://github.com/MMostafizurR/Calorie-_Counter_app.git](https://github.com/MMostafizurR/Calorie-_Counter_app.git)
 cd Calorie-_Counter_app
